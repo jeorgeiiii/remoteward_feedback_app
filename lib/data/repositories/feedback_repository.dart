@@ -67,7 +67,7 @@ class FeedbackRepository {
     final entries = await _db.getAllFeedback();
     final bytes = await _pdf.buildPdf(entries);
     final name = 'feedback_export_${DateTime.now().millisecondsSinceEpoch}.pdf';
-    final path = await _media.saveBytes(bytes, name);
+    final String? path = await _media.saveBytes(bytes, name);
     return (path: path, bytes: bytes);
   }
 }

@@ -8,8 +8,9 @@ import 'package:permission_handler/permission_handler.dart';
 
 import '../../core/constants/app_constants.dart';
 
-/// Handles writing files to the device's public **Downloads** folder using
-/// Android's scoped-storage MediaStore API (via media_store_plus).
+/// Handles persistent media storage. Picked files are copied into the app's
+/// own documents directory (a stable, permanent location) AND mirrored into
+/// the public Downloads folder via MediaStore for the assignment requirement.
 class MediaStorageService {
   final MediaStore _mediaStore = MediaStore();
 
@@ -24,29 +25,32 @@ class MediaStorageService {
     return status.isGranted || status.isLimited || status.isPermanentlyDenied;
   }
 
-  /// Saves a picked media file two ways:
-  ///  1. A copy into public Downloads (scoped-storage requirement).
-  ///  2. A persistent copy inside the app's own documents dir, whose absolute
-  ///     path is returned — so it can be embedded later (e.g. in the PDF).
+  /// Copies a picked file into the app's documents dir under /feedback_media,
+  /// returning the **permanent path**. This is what we store in the DB so the
+  /// file is still readable at export time. Also mirrors to public Downloads.
   Future<String?> saveMedia(File file) async {
-    // 1. Public Downloads copy.
-    await _mediaStore.saveFile(
-      tempFilePath: file.path,
-      dirType: DirType.download,
-      dirName: DirName.download,
-    );
+    final docs = await getApplicationDocumentsDirectory();
+    final mediaDir = Directory(p.join(docs.path, 'feedback_media'));
+    if (!await mediaDir.exists()) {
+      await mediaDir.create(recursive: true);
+    }
 
-    // 2. Persistent in-app copy (the picker's cache file can be cleared).
-    final docsDir = await getApplicationDocumentsDirectory();
-    final mediaDir = Directory(p.join(docsDir.path, 'media'));
-    if (!await mediaDir.exists()) await mediaDir.create(recursive: true);
+    // Unique, stable filename inside app storage.
+    final stamped =
+        '${DateTime.now().millisecondsSinceEpoch}_${p.basename(file.path)}';
+    final permanentPath = p.join(mediaDir.path, stamped);
+    await file.copy(permanentPath);
 
-    final dest = p.join(
-      mediaDir.path,
-      '${DateTime.now().millisecondsSinceEpoch}_${p.basename(file.path)}',
-    );
-    final saved = await file.copy(dest);
-    return saved.path; // absolute, readable path
+    // Also drop a copy into public Downloads (best-effort; ignore failure).
+    try {
+      await _mediaStore.saveFile(
+        tempFilePath: file.path,
+        dirType: DirType.download,
+        dirName: DirName.download,
+      );
+    } catch (_) {}
+
+    return permanentPath;
   }
 
   /// Writes CSV text to Downloads/FeedbackCollector.
