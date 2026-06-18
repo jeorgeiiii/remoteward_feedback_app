@@ -50,6 +50,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       await _authRepository.signInWithGoogle();
       // The auth stream will emit the authenticated user and drive navigation.
+    } on NotApprovedException {
+      emit(state.copyWith(
+        isSubmitting: false,
+        error: 'This account is not authorized to use the app.',
+      ));
     } catch (e) {
       emit(state.copyWith(
         isSubmitting: false,

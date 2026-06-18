@@ -3,32 +3,29 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../models/app_user.dart';
 
-/// Wraps Firebase Auth + Google Sign-In so the rest of the app depends on a
-/// clean interface (`AppUser`) instead of the plugin types directly.
-///
-/// IMPORTANT: targets google_sign_in ^7.x, which replaced the old
-/// `GoogleSignIn().signIn()` flow with a singleton + `initialize()` +
-/// `authenticate()`. Authentication (identity) and authorization (scopes/
-/// access token) are now two separate steps.
+/// Thrown when a verified Google account is not on the approved allowlist.
+class NotApprovedException implements Exception {
+  const NotApprovedException();
+}
+
 class AuthRepository {
   final FirebaseAuth _firebaseAuth;
+  final GoogleSignIn _googleSignIn;
 
   AuthRepository({FirebaseAuth? firebaseAuth})
-      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
+      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
+        // ✅ Web Client ID (type 3) – passed directly to GoogleSignIn constructor
+        _googleSignIn = GoogleSignIn(
+          clientId:
+              '74253352157-q9npbbhvkgi1erbei8j7o3omqfsfoj06.apps.googleusercontent.com',
+        );
 
-  bool _initialized = false;
-
-  /// Must be awaited exactly once before any sign-in attempt.
-  /// Call this during app bootstrap.
-  Future<void> initialize() async {
-    if (_initialized) return;
-    // serverClientId is your Firebase project's *Web* OAuth client ID.
-    // Required on Android so Firebase accepts the returned idToken.
-    await GoogleSignIn.instance.initialize(
-      serverClientId: '74253352157-q9npbbhvkgi1erbei8j7o3omqfsfoj06.apps.googleusercontent.com',
-    );
-    _initialized = true;
-  }
+  /// ✅ Only these accounts may use the app. Compared in lowercase.
+  static const _allowedEmails = <String>{
+    'liberlismtor@gmail.com',
+    'princemehra3666@gmail.com',
+    'info@remoteward.com',
+  };
 
   /// Emits the current owner whenever auth state changes (sign in / out).
   Stream<AppUser?> get authStateChanges =>
@@ -36,40 +33,44 @@ class AuthRepository {
 
   AppUser? get currentUser => _mapFirebaseUser(_firebaseAuth.currentUser);
 
+  /// No-op initializer kept for compatibility with older call sites.
+  Future<void> initialize() async {}
+
+  /// Signs in with Google using the web‑based OAuth flow.
+  /// This bypasses the SHA‑256 validation required by Android's Credential Manager.
   Future<AppUser?> signInWithGoogle() async {
-    await initialize();
-
-    // 1. Authenticate (identity) — shows the account picker / Credential
-    //    Manager sheet. Throws GoogleSignInException on cancel/error.
-    final GoogleSignInAccount googleUser =
-        await GoogleSignIn.instance.authenticate();
-
-    // 2. Get the id token from the authentication result.
-    final idToken = googleUser.authentication.idToken;
-
-    // 3. (Optional) Authorize scopes to obtain an access token. Firebase only
-    //    strictly needs the idToken on Android, but we request it for parity.
-    String? accessToken;
-    try {
-      final authz = await googleUser.authorizationClient
-          .authorizeScopes(<String>['email', 'profile']);
-      accessToken = authz.accessToken;
-    } catch (_) {
-      // Scope authorization can be skipped; idToken alone is enough for sign-in.
+    // 🔥 Use .signIn() instead of .authenticate() – forces web flow
+    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+    if (googleUser == null) {
+      throw FirebaseAuthException(
+        code: 'sign-in-cancelled',
+        message: 'You cancelled the sign-in.',
+      );
     }
 
-    // 4. Build a Firebase credential and sign in.
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+
     final credential = GoogleAuthProvider.credential(
-      idToken: idToken,
-      accessToken: accessToken,
+      idToken: googleAuth.idToken,
+      accessToken: googleAuth.accessToken, // ✅ Access token is optional, no error
     );
 
     final result = await _firebaseAuth.signInWithCredential(credential);
-    return _mapFirebaseUser(result.user);
+    final user = result.user;
+
+    // 🔐 ALLOWLIST CHECK – Now ACTIVE
+    final email = (user?.email ?? '').toLowerCase();
+    if (!_allowedEmails.contains(email)) {
+      await signOut(); // reject and sign back out
+      throw const NotApprovedException();
+    }
+
+    return _mapFirebaseUser(user);
   }
 
   Future<void> signOut() async {
-    await GoogleSignIn.instance.signOut();
+    await _googleSignIn.signOut();
     await _firebaseAuth.signOut();
   }
 

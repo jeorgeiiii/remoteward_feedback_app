@@ -1,0 +1,82 @@
+--------- beginning of main
+06-18 23:54:06.613  6481  6481 I adbd    : adbd service requested 'shell,v2:export ANDROID_LOG_TAGS=''; exec logcat'
+06-18 23:54:06.938  4163  4163 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.mdisync.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+06-18 23:54:07.676  4163  4163 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.feedback.internal.IFeedbackService dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsBoundBrokerService }
+06-18 23:54:09.147 16079  7779 W le.feedback_app: Cleared Reference was only reachable from finalizer (only reported once)
+06-18 23:54:09.152 16079 16079 W FinalizerDaemon: type=1400 audit(0.0:140322): avc:  denied  { getopt } for  path="/dev/socket/usap_pool_primary" scontext=u:r:untrusted_app:s0:c65,c257,c512,c768 tcontext=u:r:zygote:s0 tclass=unix_stream_socket permissive=0 app=com.example.feedback_app
+06-18 23:54:09.393 16079  7893 I gralloc4: @set_metadata: update dataspace from GM (0x08010000 -> 0x00000000)
+06-18 23:54:09.424 16079 16079 I PlayServicesImpl: No cancellationSignal found
+06-18 23:54:09.427 16079 16079 I PlayServicesImpl: No cancellationSignal found
+06-18 23:54:09.472 16079  7893 I gralloc4: @set_metadata: update dataspace from GM (0x08010000 -> 0x00000000)
+06-18 23:54:09.499  4163  4163 D BoundBrokerSvc: onRebind: Intent { act=com.google.android.gms.identitycredentials.service.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsApiService }
+06-18 23:54:09.502 16079  7893 I gralloc4: @set_metadata: update dataspace from GM (0x08010000 -> 0x00000000)
+06-18 23:54:09.549  4163 11706 I IDCredApiStub: enablePreuCredmanApi is true [CONTEXT service_id=352 ]
+06-18 23:54:09.570 16079 16079 I PlayServicesImpl: No cancellationSignal found
+06-18 23:54:09.658 16079 16079 D InputTransport: Create ARC handle: 0xb4000070abc290c0
+06-18 23:54:09.683 16079 16079 D BufferQueueConsumer: [](id:3ecf00000002,api:0,p:-1,c:16079) connect: controlledByApp=false
+06-18 23:54:09.685 16079  7806 E OpenGLRenderer: Unable to match the desired swap behavior.
+06-18 23:54:09.695 16079  7806 D BLASTBufferQueue: [VRI[HiddenActivity]#2](f:0,a:1) acquireNextBufferLocked size=1080x2376 mFrameNumber=1 applyTransaction=true mTimestamp=18941589599897(auto) mPendingTransactions.size=0 graphicBufferId=69058779152408 transform=0
+06-18 23:54:09.702  5561  5561 W GmsActivityProxy: Error binding root VE. SignInCredentialChooserActivity is missing a @GmsCoreVeId annotation. [CONTEXT service_id=264 ]
+06-18 23:54:09.704  5561  5561 W WindowOnBackDispatcher: OnBackInvokedCallback is not enabled for the application.
+06-18 23:54:09.704  5561  5561 W WindowOnBackDispatcher: Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+06-18 23:54:09.715  5561  5561 D InputTransport: Create ARC handle: 0xb4000070abc20300
+06-18 23:54:09.718  4163  4163 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.auth.api.identity.service.gis_internal.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsInternalApiService }
+06-18 23:54:09.718  4163  7010 I Auth.Api.Credentials: [GetGoogleIdOperation] Operation started. [CONTEXT service_id=68 ]
+06-18 23:54:09.719  4163  4163 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.auth.api.identity.service.gis_internal.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsInternalApiService }
+06-18 23:54:09.739  5561  5561 D BufferQueueConsumer: [](id:15b900000004,api:0,p:-1,c:5561) connect: controlledByApp=false
+06-18 23:54:09.741  5561 15996 E OpenGLRenderer: Unable to match the desired swap behavior.
+06-18 23:54:09.754  5561 15996 D BLASTBufferQueue: [VRI[SignInCredentialChooserActivity]#4](f:0,a:1) acquireNextBufferLocked size=1080x2376 mFrameNumber=1 applyTransaction=true mTimestamp=18941647723666(auto) mPendingTransactions.size=0 graphicBufferId=23884313133080 transform=0
+06-18 23:54:09.752  4163  8022 I Auth.Api.Credentials: [GenerateCallerVerificationTokenOperation] Operation started. [CONTEXT service_id=179 ]
+06-18 23:54:09.764  4163  8023 I Auth.Api.Credentials: [GenerateCallerVerificationTokenOperation] Operation started. [CONTEXT service_id=179 ]
+06-18 23:54:09.785  1612  1650 I ActivityTaskManager: Displayed com.google.android.gms/.identitycredentials.ui.SignInCredentialChooserActivity for user 0: +201ms
+06-18 23:54:09.792  4163  8029 I Auth.Api.Credentials: (REDACTED) [GenerateCallerVerificationTokenOperation] Operation succeeded with result: %s.
+06-18 23:54:09.802  5561  5561 V ImeFocusController: onWindowFocus: DecorView@c54e19[SignInCredentialChooserActivity] softInputMode=STATE_UNSPECIFIED|ADJUST_PAN|IS_FORWARD_NAVIGATION
+06-18 23:54:09.815  4163 25774 I Auth.Api.Credentials: (REDACTED) [GenerateCallerVerificationTokenOperation] Operation succeeded with result: %s.
+06-18 23:54:09.821  4654  4654 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2259 
+06-18 23:54:09.823  4654  4654 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():103 repeatCheckTimes = 0, locked = false
+06-18 23:54:09.824  4654  4654 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1446 onStartInput(EditorInfo{EditorInfo{packageName=com.google.android.gms, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+06-18 23:54:09.824  4654  4654 I AndroidIME: LatinIMEBase.updateInputViewCoverNavigation():322 Update input view padding, isNavbarOverInputWindow=false, bottom inset=116
+06-18 23:54:09.825  4654  4654 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():103 repeatCheckTimes = 1, locked = false
+06-18 23:54:09.848  2512  2525 W ssioncontroller: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~W9TLhC_1vxbvkN1fDVVT7w==/com.google.android.googlequicksearchbox-Hp9gElmvwxBPM0MLcnoogw==/base.apk' with 1 weak references
+06-18 23:54:09.851  2512  2525 W ssioncontroller: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~W9TLhC_1vxbvkN1fDVVT7w==/com.google.android.googlequicksearchbox-Hp9gElmvwxBPM0MLcnoogw==/split_config.xxhdpi.apk' with 1 weak references
+06-18 23:54:09.851  2512  2525 W ssioncontroller: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~W9TLhC_1vxbvkN1fDVVT7w==/com.google.android.googlequicksearchbox-Hp9gElmvwxBPM0MLcnoogw==/split_lens_ondevice_engine_feature_module.apk' with 1 weak references
+06-18 23:54:09.851  2512  2525 W ssioncontroller: ApkAssets: Deleting an ApkAssets object '<empty> and /data/app/~~W9TLhC_1vxbvkN1fDVVT7w==/com.google.android.googlequicksearchbox-Hp9gElmvwxBPM0MLcnoogw==/split_lens_ondevice_engine_play_ml_module.apk' with 1 weak references
+06-18 23:54:09.915  4163  8027 I Auth.Api.Credentials: (REDACTED) [GetGoogleIdOperation] Operation succeeded with result: %s.
+06-18 23:54:10.611 19199 19199 I Choreographer: Skipped 60 frames!  The application may be doing too much work on its main thread.
+06-18 23:54:12.146  4683  4683 I AiAiTextClassifier: onCreateTextClassificationSession = TextClassificationSessionId {c76ae4aa-1fdd-4009-b550-1ed567ce2c62}
+06-18 23:54:15.006  6244  7388 I MlsIntegration: Treatment for Weblab MLS_USE_PSEUDO_DEVICE_ID_ANDROID_1109242 is C_default (changed?: false)
+06-18 23:54:15.007  6244  7388 I MlsIntegration: Treatment for Weblab MLS_ANDROID_ZAZ_MIGRATION_1364350 is C_default (changed?: false)
+06-18 23:54:15.007  6244  7388 I MlsIntegration: Treatment for Weblab MLS_ENABLE_DEBUG_LOGS_1366122 is C_default (changed?: false)
+06-18 23:54:24.801  4163  4163 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.auth.api.identity.service.gis_internal.START dat=chimera-action:/... cmp=com.google.android.gms/.chimera.GmsInternalApiService }
+06-18 23:54:25.621  9208  9208 I Finsky  : [2] SCH: job service start with id 9380.
+06-18 23:54:25.660  9208  8065 I Finsky  : [1125] SCH: Satisfied jobs for 9380 are: 12-1
+06-18 23:54:25.663  9208  8064 I Finsky  : [1124] SCH: Job 12-1 starting
+06-18 23:54:25.667  9208  9208 I Finsky  : [2] WM::SCH: Logging work start for 12-1
+06-18 23:54:25.680  9208  9208 I Finsky  : [2] [ContentSync] job started
+06-18 23:54:26.094  9208  9797 I Finsky  : [559] AIM: AppInfoManager-Perf > Destroying AppInfoManager ...
+06-18 23:54:26.227  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.mainline.primary.libs' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.247  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.wifi' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.364  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.apex.cts.shim' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.420  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.appsearch' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.424  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.art' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.490  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.mediaprovider' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.513  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.virt' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.530  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.resolv' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.566  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.configinfrastructure' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.569  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.media' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.605  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.vndk.v31' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.609  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.vndk.v30' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.610  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.vndk.v33' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.626  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.vndk.v34' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.667  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.sdkext' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.695  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.adservices' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.696  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.tethering' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.739  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.runtime' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.774  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.cellbroadcast' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.963  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.android.compos' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:26.983  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.tzdata5' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:27.035  9208  9208 W Finsky  : [2] STU: Failed to get storage stats for package 'com.google.android.permission' (1601: Error getting stats: android.content.pm.PackageManager.NameNotFoundException)
+06-18 23:54:27.122  6244 16495 D MobileLoggingSuite: Executing Sushi UploadTask...
+06-18 23:54:27.122  6244 16495 D MobileLoggingSuite: Starting upload of previously persisted events in path /data/user/0/in.amazon.mShop.android.shopping/files/mls/nexus/sushi_normal
+06-18 23:54:27.130  6244 16495 D MobileLoggingSuite: Completed upload of previously persisted events in path /data/user/0/in.amazon.mShop.android.shopping/files/mls/nexus/sushi_normal
+06-18 23:54:27.135  6244 16495 D MobileLoggingSuite: Sushi UploadTask completed successfully

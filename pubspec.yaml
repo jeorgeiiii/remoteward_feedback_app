@@ -30,9 +30,8 @@ dependencies:
   # Authentication
   firebase_core: ^3.13.0
   firebase_auth: ^5.5.2
-  # NOTE: google_sign_in 7.x has a NEW singleton + initialize() + authenticate()
-  # API that is incompatible with 6.x tutorials. Code here targets 7.x.
-  google_sign_in: ^7.1.0
+  # Use google_sign_in 6.x API to match the existing auth code.
+  google_sign_in: ^6.0.4
 
   # Biometric / device auth for export
   local_auth: ^2.3.0
