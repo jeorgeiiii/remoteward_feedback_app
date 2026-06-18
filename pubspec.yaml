@@ -1,0 +1,73 @@
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/remoteW.png"
+  min_sdk_android: 21
+
+name: feedback_app
+description: "A user feedback collection app with Google Sign-In, BLoC, SQLite and CSV export."
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.7.0 <4.0.0"
+  flutter: ">=3.29.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State management (BLoC architecture)
+  flutter_bloc: ^9.1.0
+  bloc: ^9.0.0
+  equatable: ^2.0.7
+
+  # Dependency injection
+  get_it: ^8.0.3
+  pdf: ^3.11.1
+  printing: ^5.13.4
+
+  # Authentication
+  firebase_core: ^3.13.0
+  firebase_auth: ^5.5.2
+  # NOTE: google_sign_in 7.x has a NEW singleton + initialize() + authenticate()
+  # API that is incompatible with 6.x tutorials. Code here targets 7.x.
+  google_sign_in: ^7.1.0
+
+  # Biometric / device auth for export
+  local_auth: ^2.3.0
+
+  # Local SQL persistence
+  sqflite: ^2.4.1
+  path: ^1.9.0
+  path_provider: ^2.1.5
+
+  # Media capture
+  image_picker: ^1.1.2
+
+  # Scoped storage (Android MediaStore) for saving media + CSV to Downloads
+  media_store_plus: ^0.1.3
+
+  # CSV generation
+  csv: ^6.0.0
+
+  # Device info for the "User Device" CSV column
+  device_info_plus: ^11.3.0
+
+  # Permissions
+  permission_handler: ^11.4.0
+
+  # Misc
+  intl: ^0.20.2
+  uuid: ^4.5.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  bloc_test: ^10.0.0
+  mocktail: ^1.0.4
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  uses-material-design: true
